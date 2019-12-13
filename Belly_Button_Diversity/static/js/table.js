@@ -1,4 +1,13 @@
-function populateDemographicInfo(name){
+/**
+ * Created By: Mandar R. Gogate
+ * Created On: 12/11/2019
+ * This js file populates table element 
+ * it accepts 2 arguments 
+ * 1. selected element in combo box
+ * 2. actual json object
+ */
+
+function populateDemographicInfo(name, myJsonObj){
     
     let myPanel = d3.select("#sample-metadata");
     myPanel.selectAll("table").remove("table");

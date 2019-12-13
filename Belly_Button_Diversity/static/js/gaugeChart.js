@@ -1,4 +1,13 @@
-function populateGaugeChart(name){
+/**
+ * Created By: Mandar R. Gogate
+ * Created On: 12/11/2019
+ * This js file creates Gauge Chart
+ * it accepts 2 arguments 
+ * 1. selected element in combo box
+ * 2. actual json object
+ */
+
+function populateGaugeChart(name, myJsonObj){
     let metadataInfo = myJsonObj.metadata.filter(function(d){
         return d.id == name;
     })
@@ -11,34 +20,13 @@ function populateGaugeChart(name){
         // 165 - 1 !! 142 -2 !! 120-3 !! 105 - 4 !! 90 - 5 !! 75 - 6 !! 57 - 7 !! 40 - 8
         var degrees;
 
-        switch(level){
-            case 1:
-                degrees = 165;
-                break;
-            case 2:
-                degrees = 142;
-                break;
-            case 3:
-                degrees = 120;
-                break;
-            case 4:
-                degrees = 105;
-                break;
-            case 5:
-                degrees = 90;
-                break;
-            case 6:
-                degrees = 75;
-                break;
-            case 7:
-                degrees = 57;
-                break;
-            case 7:
-                degrees = 40;
-                break;
-            default:
-                degrees = 360;
-        }
+        degrees = (level >= 1 && level < 2) ? 165 :
+                        (level >= 2 && level < 3) ? 142 :
+                        (level >= 3 && level < 4) ? 120 :
+                        (level >= 4 && level < 5) ? 105 :
+                        (level >= 5 && level < 6) ? 90 :
+                        (level >= 6 && level < 7) ? 75 :
+                        (level >= 7 && level < 8) ? 57 : 40
         
         var radius = .5;
         var radians = degrees * Math.PI / 180;
@@ -53,11 +41,7 @@ function populateGaugeChart(name){
             pathY = String(y),
             pathEnd = ' Z';
         var path = mainPath.concat(pathX,space,pathY,pathEnd);
-        console.log("Degree is -->" + degrees);
-        console.log("X val is  -->" + x);
-        console.log("Y val is  -->" + y);
-        console.log("Path val is -->" + path)
-
+        
         var data = [{ type: 'category',
             x: [0], y:[0],
             marker: {size: 28, color:'850000'},
@@ -93,7 +77,7 @@ function populateGaugeChart(name){
                 color: '850000'
             }
             }],
-        title: 'Maturity Total Score 1-5',
+        title: 'Belly Button Washing Frequency',
         height: 500,
         width: 600,
         xaxis: {type:'category',zeroline:false, showticklabels:false,
